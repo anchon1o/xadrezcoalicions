@@ -166,6 +166,15 @@ header h1 span:first-of-type{margin-left:4px}
 label{font-weight:500;font-size:14.5px;flex:1 1 auto;min-width:0}
 label .hint{display:block;font-weight:400;font-size:12px;color:var(--mut);margin-top:2px;line-height:1.3}
 .row select{flex:0 0 auto;max-width:52%}
+.row.stack{flex-direction:column;align-items:stretch;gap:8px}
+.row.stack label{flex:none}
+.campo{width:100%;box-sizing:border-box;font:inherit;font-size:15px;border:2px solid var(--ink);padding:9px 10px;background:#fff;min-width:0}
+.cod-in{font-family:var(--disp);font-size:22px;letter-spacing:.22em;text-transform:uppercase;text-align:center;padding:6px 10px}
+.unir{display:flex;gap:8px;width:100%}
+.unir .campo{flex:1 1 auto}
+.unir button{flex:0 0 auto}
+.card{min-width:0;box-sizing:border-box}
+.card>*{min-width:0;max-width:100%;box-sizing:border-box}
 .row input[type=checkbox]{flex:0 0 auto}
 select{font:inherit;font-size:13.5px;font-weight:600;border:2px solid var(--ink);border-radius:0;
   padding:7px 8px;background:#fff;color:var(--ink)}
@@ -300,13 +309,13 @@ input[type=checkbox]{width:19px;height:19px;accent-color:var(--ink)}
 
 @media (orientation:landscape){
   .ptit{padding-top:2vh} .ptit img{width:min(40%,420px);max-height:17vh}
-  .pfigs{gap:4vw;padding-top:0;padding-bottom:calc(var(--hz) * .18)}
+  .pfigs{gap:4vw;padding-top:0;padding-bottom:0}
   .fig:nth-child(1) img:not(.lbl){height:min(18vh,18vw,210px)}
   .fig:nth-child(2) img:not(.lbl){height:min(22vh,15vw,240px)}
   .fig:nth-child(3) img:not(.lbl){height:min(17vh,17vw,200px)}
-  .fig.alto{margin-bottom:3vh}
-  .pdesc{height:2.5em;padding-top:6px}
-  .pmoto img:not(.lbl){height:min(20vh,26vw,240px)}
+  .fig.alto{margin-bottom:2vh}
+  .pdesc{height:2.1em;padding-top:4px}
+  .pmoto img:not(.lbl){height:min(17vh,24vw,220px)}
 }
 @media (prefers-reduced-motion:reduce){
   .pbg,.ptit,.fig,.pmoto{animation:none;opacity:1;transform:none}
@@ -442,14 +451,13 @@ input[type=checkbox]{width:19px;height:19px;accent-color:var(--ink)}
 
 <div class="modal" id="mLina"><div class="card">
   <div class="chead"><h2 data-t="olTit"></h2><button class="close ghost" data-close aria-label="pechar">✕</button></div>
-  <div class="row"><label data-t="olNome"></label>
-    <input type="text" id="olNome" maxlength="18" autocomplete="nickname" style="flex:0 0 52%;font:inherit;font-size:15px;border:2px solid var(--ink);padding:8px 10px;background:#fff"></div>
-  <div class="row"><label data-t="olCrear"><span class="hint" data-t="olCrearH"></span></label>
-    <button class="p" id="olBtnCrear" data-t="olCrearB"></button></div>
-  <div class="row"><label data-t="olUnir"></label>
-    <div style="display:flex;gap:8px;flex:0 0 58%">
-      <input type="text" id="olCod" maxlength="5" placeholder="ABCDE" autocapitalize="characters"
-        style="flex:1;min-width:0;font:inherit;font-family:var(--disp);font-size:20px;letter-spacing:.2em;text-transform:uppercase;border:2px solid var(--ink);padding:6px 10px;background:#fff;text-align:center">
+  <div class="row stack"><label data-t="olNome"></label>
+    <input type="text" id="olNome" maxlength="18" autocomplete="nickname" class="campo"></div>
+  <div class="row stack"><label data-t="olCrear"><span class="hint" data-t="olCrearH"></span></label>
+    <button class="p" id="olBtnCrear" data-t="olCrearB" style="width:100%"></button></div>
+  <div class="row stack"><label data-t="olUnir"></label>
+    <div class="unir">
+      <input type="text" id="olCod" maxlength="5" placeholder="ABCDE" autocapitalize="characters" class="campo cod-in">
       <button id="olBtnUnir" data-t="olUnirB"></button></div></div>
   <p id="olErr" style="color:var(--r);font-weight:500;min-height:1.3em"></p>
   <p style="font-size:12.5px;color:var(--mut)" data-t="olNota"></p>
@@ -459,13 +467,12 @@ input[type=checkbox]{width:19px;height:19px;accent-color:var(--ink)}
   <h2><span data-t="salaTit"></span> <span class="cod" id="salaCod"></span></h2>
   <p data-t="salaInstr" style="margin-top:0"></p>
   <div class="seats" id="seats"></div>
-  <div class="row" style="border-top:0;padding-top:4px">
+  <div class="row" style="border-top:0;padding-top:4px;flex-wrap:wrap">
     <button id="salaSortear" data-t="salaSortear"></button>
     <button class="p" id="salaComezar" data-t="salaComezar" disabled></button>
   </div>
   <div class="chatbox" id="chatSala"></div>
-  <div class="row" style="border-top:0"><input type="text" id="chatInSala" maxlength="140" data-ph="chatPh"
-     style="flex:1;font:inherit;font-size:14px;border:2px solid var(--ink);padding:8px 10px;background:#fff"><button id="chatBtnSala">→</button></div>
+  <div class="row" style="border-top:0"><input type="text" id="chatInSala" maxlength="140" data-ph="chatPh" class="campo" style="flex:1 1 auto;width:auto"><button id="chatBtnSala">→</button></div>
   <div class="row" style="border-top:0"><button class="o" id="salaSair" data-t="salaSair"></button></div>
 </div></div>
 
@@ -1403,7 +1410,6 @@ debuxarChan();
    - Firebase Realtime Database (produción, capa gratuíta). Pega a config en FIREBASE_CONFIG.
    - LocalDB: mesma máquina, entre pestanas, vía localStorage. Serve para probar sen Internet.
    O estado da partida sincronízase enteiro tras cada acción (poucos bytes, poucas xogadas). */
-
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyAnMMvj4Xov7VMxjeaJNtr_Ca69i-ND4uA",
   databaseURL: "https://xadrezcoalicions-default-rtdb.europe-west1.firebasedatabase.app",
@@ -1459,9 +1465,12 @@ const Rede=(()=>{
     return DB;
   }
   async function limparEcontar(){
-    const salas=(await DB.get("rooms"))||{}; const agora=Date.now(); let n=0;
+    let salas={};
+    try{ salas=(await DB.get("rooms"))||{}; }
+    catch(e){ console.warn("Non se puido ler a lista de salas (regras?)",e); return 0; }
+    const agora=Date.now(); let n=0;
     for(const c in salas){ const r=salas[c];
-      if(!r||!r.updated||agora-r.updated>SALA_INACTIVA_MS*2){ await DB.set("rooms/"+c,null); continue; }
+      if(!r||!r.updated||agora-r.updated>SALA_INACTIVA_MS*2){ try{ await DB.set("rooms/"+c,null); }catch(e){} continue; }
       if(agora-r.updated<=SALA_INACTIVA_MS) n++; }
     return n;
   }
@@ -1555,7 +1564,9 @@ async function olAccion(fn){
   const nome=$("olNome").value.trim(); if(!nome){ $("olErr").textContent=t("errNome"); return; }
   localStorage.setItem("xc-nome",nome); $("olErr").textContent="";
   try{ await fn(nome); }
-  catch(e){ const k={chea:"errChea",cod:"errCod"}[e.message]||"errRede"; $("olErr").textContent=t(k); console.warn(e); }
+  catch(e){ const k={chea:"errChea",cod:"errCod"}[e.message]||"errRede";
+    const det=(e&&e.code)?` (${e.code})`:(e&&e.message&&!k.startsWith("err")?"":"");
+    $("olErr").textContent=t(k)+(k==="errRede"&&e&&(e.code||e.message)?` — ${e.code||e.message}`:""); console.warn(e); }
 }
 $("olBtnCrear").onclick=()=>olAccion(n=>Rede.crear(n));
 $("olBtnUnir").onclick=()=>olAccion(n=>{ const c=$("olCod").value; if(c.length<5) throw new Error("cod"); return Rede.entrar(c,n); });
