@@ -1,0 +1,44 @@
+XADREZ DE COALICIÓNS — versión local con skins
+==============================================
+
+COMO XOGAR
+Abre index.html nun navegador (móbil, tablet ou PC). Non precisa internet.
+Xogan 4 persoas no mesmo dispositivo, por quendas.
+
+IMPORTANTE
+A carpeta "pezas" ten que estar sempre xunto a index.html.
+
+ESTILOS DE PEZAS (Axustes ⚙ > Estilo das pezas)
+  Minimal    siluetas planas          (vista en perspectiva, non xira)
+  Origami    low-poly mate            (vista en perspectiva, non xira)
+  Futurista  sci-fi cenital           (xira por facción)
+  Oriental   samurai cenital          (xira por facción)
+  Xoguete    madeira cenital          (xira por facción) — por defecto
+  Pixel      pixel art cenital        (xira por facción)
+  Leonardo   inventos cenital         (xira por facción)
+
+Nas skins cenitais cada facción mira cara ao centro do taboleiro:
+Amarelo 0º, Negro 180º, Vermello 90º, Verde -90º.
+
+OUTROS AXUSTES
+  Idioma: galego (defecto), castelán, inglés
+  Panel lateral á dereita ou á esquerda (pantalla horizontal)
+  Amosar coordenadas
+  Variante: menores (Verde+Vermello) contra maiores
+
+SEGUINTE PASO
+Modo online con salas (Firebase, capa gratuíta, límite de 20 salas activas).
+
+TABOLEIROS (Axustes > Taboleiro)
+  Madeira · Papel · Boli azul · Escuro · Tatami
+
+ORIENTACIÓN (Axustes > Orientación)
+  Fixa            o taboleiro non se move (recomendado para xogar no mesmo móbil)
+  Primeira persoa xira en cada quenda: as túas pezas sempre abaixo
+
+SON (Axustes)
+  Música   serie dodecafónica xerada na propia app; nova en cada partida.
+           Expón as 12 notas e vai alternando serie, inversión e retrógrado.
+  Efectos  mover, capturar, colocar, xaque e declaración de coalición.
+  Todo sintetizado en Web Audio: non hai ficheiros de audio no paquete.
+  O navegador esixe tocar a pantalla unha vez antes de que soe nada.
