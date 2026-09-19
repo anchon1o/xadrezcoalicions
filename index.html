@@ -1403,7 +1403,12 @@ debuxarChan();
    - Firebase Realtime Database (produción, capa gratuíta). Pega a config en FIREBASE_CONFIG.
    - LocalDB: mesma máquina, entre pestanas, vía localStorage. Serve para probar sen Internet.
    O estado da partida sincronízase enteiro tras cada acción (poucos bytes, poucas xogadas). */
-const FIREBASE_CONFIG = null; /* ex.: {apiKey:"...",databaseURL:"https://XXX.firebasedatabase.app",projectId:"..."} */
+
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAnMMvj4Xov7VMxjeaJNtr_Ca69i-ND4uA",
+  databaseURL: "https://xadrezcoalicions-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "xadrezcoalicions"
+};
 const MAX_SALAS=20, SALA_INACTIVA_MS=30*60*1000;
 
 const LocalDB=(()=>{                       // API mínima: get/set/update/push/onValue/off
