@@ -713,14 +713,14 @@ const nm=c=>L.name[c];
 
 /* ---------------- pezas SVG ---------------- */
 const SKINS={
-  minimal:  {nome:"Minimal",   cenital:false},
-  origami:  {nome:"Origami",   cenital:false},
+  minimal:  {nome:"Minimal",   cenital:false, escala:.84},
+  origami:  {nome:"Origami",   cenital:false, escala:.90},
   futurista:{nome:"Futurista", cenital:true},
   oriental: {nome:"Oriental",  cenital:true},
   xoguete:  {nome:"Xoguete",   cenital:true},
   pixel:    {nome:"Pixel",     cenital:true},
   leonardo: {nome:"Leonardo",  cenital:true},
-  boli:     {nome:"Bolígrafo", cenital:false},
+  boli:     {nome:"Bolígrafo", cenital:false, escala:.82},
 };
 const HATCH=(c,op)=>`url("data:image/svg+xml;utf8,`+encodeURIComponent(
   `<svg xmlns='http://www.w3.org/2000/svg' width='9' height='9'><g stroke='${c}' stroke-width='1' opacity='${op}' stroke-linecap='round'><path d='M-1 3 L3 -1 M-1 8 L8 -1 M4 10 L10 4'/></g></svg>`)+`")`;
@@ -738,7 +738,9 @@ const XIRO={Y:0,B:180,R:90,G:-90};   // as pezas debúxanse mirando cara arriba
 function pieceSVG(type,color,size){  // mantén o nome: devolve <img> da skin activa
   const sk=settings.skin||"xoguete";
   const rot=SKINS[sk].cenital?XIRO[color]:-(typeof S!=="undefined"&&S?boardRot():0);
-  const est=`width:100%;height:100%;object-fit:contain;display:block;`
+  const esc=SKINS[sk].escala||1;
+  const est=`width:${(esc*100).toFixed(0)}%;height:${(esc*100).toFixed(0)}%;object-fit:contain;display:block;`
+          + (SKINS[sk].cenital?``:`align-self:flex-end;margin-bottom:${((1-esc)*50*0.4).toFixed(1)}%;`)
           + (rot?`transform:rotate(${rot}deg);`:``)
           + (SKINS[sk].cenital===false&&false?``:``)
           + (sk==="pixel"?`image-rendering:pixelated;`:``);

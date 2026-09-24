@@ -1,6 +1,6 @@
 /* Service worker: garda a app enteira para funcionar sen conexión.
    Ao publicar unha versión nova, cambia VERSION e os navegadores actualizan sos. */
-const VERSION = "xc-v5";
+const VERSION = "xc-v6";
 const ARQUIVOS = [
   "./",
   "./index.html",
