@@ -158,7 +158,7 @@ de Google, que probablemente xa teñas.
 
 ## 3.5 Subir a versión nova
 
-16. Abre `sw.js` e cambia `const VERSION = "xc-v2";` por `"xc-v3"`.
+16. Abre `sw.js` e cambia `const VERSION = "xc-v3";` por `"xc-v3"`.
 17. Volve subir a carpeta ao sitio de publicación (Netlify ou GitHub).
 
 ## 3.6 Probalo

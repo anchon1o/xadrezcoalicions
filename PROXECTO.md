@@ -128,7 +128,7 @@ ao enderezo de cada pestana. Sen iso comparten identificador.
 Cada vez que se publique unha versión nova hai que cambiar a liña
 
 ```js
-const VERSION = "xc-v2";
+const VERSION = "xc-v3";
 ```
 
 do ficheiro `sw.js` (a `xc-v3`, `xc-v4`…). Se non, os dispositivos que xa teñan

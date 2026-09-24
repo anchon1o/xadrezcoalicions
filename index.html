@@ -77,6 +77,11 @@ header h1 span:first-of-type{margin-left:4px}
 .sq{position:relative;display:flex;align-items:center;justify-content:center}
 .sq.l{background:var(--claro,var(--light))} .sq.d{background:var(--escuro,var(--dark))}
 .sq .zone{position:absolute;inset:0;pointer-events:none;opacity:.22}
+.sq .alia{position:absolute;pointer-events:none;opacity:.85}
+.sq .alia-Y{left:0;right:0;top:0;height:9%}        /* Amarelo abaixo: franxa no lado de arriba */
+.sq .alia-B{left:0;right:0;bottom:0;height:9%}     /* Negro arriba: franxa abaixo */
+.sq .alia-R{top:0;bottom:0;right:0;width:9%}       /* Vermello á esquerda: franxa á dereita */
+.sq .alia-G{top:0;bottom:0;left:0;width:9%}        /* Verde á dereita: franxa á esquerda */
 .sq .corner{position:absolute;inset:0;pointer-events:none;opacity:.35;
   background:repeating-linear-gradient(45deg,var(--ink) 0 3px,transparent 3px 9px)}
 .sq .coord{position:absolute;font-size:9px;font-weight:700;opacity:.5;pointer-events:none}
@@ -103,7 +108,11 @@ header h1 span:first-of-type{margin-left:4px}
 .actions{display:flex;flex-wrap:wrap;gap:7px}
 .actions button{flex:1 1 auto;min-width:96px;font-size:14px;padding:11px 12px}
 .actions button.ghost{flex:0 0 auto;min-width:0;font-size:13px;font-weight:600;color:var(--mut)}
-.coal{display:flex;gap:0;flex-wrap:wrap}
+.coal{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.coal .chip.par{background:var(--ink);color:#fff;height:32px;font-size:13px;flex:1 1 auto;min-width:0;gap:6px}
+.coal .mais{opacity:.55;margin:0 2px}
+.coal .pend{opacity:.55;font-weight:400;text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:12px}
+.coal .vs{font-family:var(--disp);font-size:12px;color:var(--mut);letter-spacing:.06em;text-transform:uppercase}
 .coal .chip{background:var(--ink);color:#fff;height:32px;font-size:13px;flex:1;min-width:140px}
 .log{font-size:12px;line-height:1.6;display:flex;flex-wrap:wrap;gap:3px 12px;color:var(--mut);
   font-variant-numeric:tabular-nums}
@@ -132,7 +141,14 @@ header h1 span:first-of-type{margin-left:4px}
 .seat b{font-family:var(--disp);letter-spacing:.03em;text-transform:uppercase;font-size:14px}
 .seat small{color:var(--mut);display:block;font-size:12px}
 .seat.mine{background:var(--ink);color:var(--paper)} .seat.mine small{color:#B9B6B0}
-.seat.taken{opacity:.75;cursor:default}
+.seat.taken{opacity:.85}
+.seatwrap{position:relative}
+.seat{width:100%;position:relative}
+.seatx{margin-left:auto;font-size:13px;opacity:.6}
+.seatbot{position:absolute;top:6px;right:6px;width:30px;height:26px;padding:0;border-radius:0;
+  background:var(--y);font-size:14px;line-height:1;border:2px solid var(--ink);z-index:2}
+.seatlib{position:absolute;top:6px;right:6px;width:26px;height:26px;padding:0;border-radius:0;
+  background:var(--r);color:#fff;font-size:13px;line-height:1;border:2px solid var(--ink);z-index:2}
 .chatbox{border:2px solid var(--ink);height:120px;overflow:auto;padding:8px 10px;font-size:13.5px;line-height:1.45;
   background:#fff;margin:0 20px}
 .chatbox div b{font-weight:700} .chatbox div i{color:var(--mut);font-style:normal;font-size:11.5px;margin-left:6px}
@@ -179,6 +195,13 @@ label .hint{display:block;font-weight:400;font-size:12px;color:var(--mut);margin
 select{font:inherit;font-size:13.5px;font-weight:600;border:2px solid var(--ink);border-radius:0;
   padding:7px 8px;background:#fff;color:var(--ink)}
 input[type=checkbox]{width:19px;height:19px;accent-color:var(--ink)}
+.botrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:100%}
+.botrow button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;
+  background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--rule);font-size:12px}
+.botrow button .dot{width:14px;height:14px}
+.botrow button.on{box-shadow:inset 0 0 0 2px var(--ink);background:#fff}
+.botrow button.on small{font-weight:700}
+.botrow small{font-family:var(--sans);font-weight:500;text-transform:none;letter-spacing:0;font-size:11px}
 .flags{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;
   -webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;padding:2px 0 6px;flex:1 1 100%;
   scrollbar-width:none}
@@ -309,13 +332,13 @@ input[type=checkbox]{width:19px;height:19px;accent-color:var(--ink)}
 
 @media (orientation:landscape){
   .ptit{padding-top:2vh} .ptit img{width:min(40%,420px);max-height:17vh}
-  .pfigs{gap:4vw;padding-top:0;padding-bottom:0}
-  .fig:nth-child(1) img:not(.lbl){height:min(18vh,18vw,210px)}
-  .fig:nth-child(2) img:not(.lbl){height:min(22vh,15vw,240px)}
-  .fig:nth-child(3) img:not(.lbl){height:min(17vh,17vw,200px)}
+  .pfigs{gap:4vw;padding-top:0;padding-bottom:0;align-items:flex-end}
+  .fig:nth-child(1) img:not(.lbl){height:min(20vh,15vw,210px)}
+  .fig:nth-child(2) img:not(.lbl){height:min(24vh,17vw,260px)}
+  .fig:nth-child(3) img:not(.lbl){height:min(19vh,14vw,200px)}
   .fig.alto{margin-bottom:2vh}
   .pdesc{height:2.1em;padding-top:4px}
-  .pmoto img:not(.lbl){height:min(17vh,24vw,220px)}
+  .pmoto img:not(.lbl){height:min(19vh,22vw,240px)}
 }
 @media (prefers-reduced-motion:reduce){
   .pbg,.ptit,.fig,.pmoto{animation:none;opacity:1;transform:none}
@@ -440,6 +463,8 @@ input[type=checkbox]{width:19px;height:19px;accent-color:var(--ink)}
   <div class="row"><label><input type="checkbox" id="chkCoords"> <span data-t="showCoords"></span></label></div>
   <div class="row"><label><input type="checkbox" id="chkVariant"> <span data-t="variant"></span></label></div>
   <p style="font-size:13px;opacity:.75" data-t="variantNote"></p>
+  <div class="row stack"><label data-t="botsTit"><span class="hint" data-t="botsH"></span></label>
+    <div class="botrow" id="botrow"></div></div>
   <div class="row"><button class="p" id="btnNew" data-t="newGame"></button></div>
 </div></div>
 
@@ -515,11 +540,11 @@ gl:{name:{Y:"Amarelo",B:"Negro",G:"Verde",R:"Vermello"},
  settings:"Axustes",language:"Idioma",panelSide:"Panel lateral<span class='hint'>Só en pantalla horizontal</span>",right:"Dereita",left:"Esquerda",
  showCoords:"Amosar coordenadas",skin:"Estilo das pezas",board:"Taboleiro",music:"Música",sfx:"Efectos de son",orient:"Orientación",orientFixa:"Fixa",orient1p:"Primeira persoa",variant:"Variante: menores (Verde+Vermello) contra maiores",
  variantNote:"Na variante, as alianzas están fixadas desde o inicio. As menores gañan dando xaque mate a calquera Rei; as maiores gañan capturando todas as pezas das menores.",
- olTit:"Xogar en liña",olNome:"O teu nome",olCrear:"Crear unha sala",olCrearH:"Recibes un código para compartir",olCrearB:"Crear",olUnir:"Unirse cun código",olUnirB:"Entrar",olNota:"Sen contas nin contrasinais. As salas péchanse aos 30 minutos sen actividade. Máximo 20 salas activas á vez.",salaTit:"Sala",salaInstr:"Cada quen escolle a súa cor. Os postos libres sortéanse ao comezar.",salaSortear:"Sortear libres",salaComezar:"Comezar",salaSair:"Saír da sala",chatPh:"Escribe algo…",libre:"Libre",ti:"ti",errNome:"Pon un nome.",errCod:"Esa sala non existe.",errChea:"Non hai sitio: hai 20 salas activas. Proba máis tarde.",errRede:"Non se puido conectar.",errCfg:"O modo en liña non está configurado neste sitio.",salaSo:"Só quen creou a sala pode comezar",agarda:"Agardando a que se enchan os postos…",tuaQuenda:"É a túa quenda",quendaDe:"Quenda de {p}",espectador:"Estás mirando",desc:"Desconectado",mNova:"Xogar",mLina:"En liña",mRegras:"Regras",mAxustes:"Axustes",dNova:"Partida para catro no mesmo dispositivo",dLina:"Crear ou unirse a unha sala con outras persoas",dRegras:"As regras completas, coas pezas e os seus movementos",dAxustes:"Idioma, estilo das pezas, taboleiro e son",inicio:"Volver ao inicio",sairConf:"Saír da partida e volver ao inicio?",proximo:"O modo en liña aínda está por chegar",newGame:"Nova partida",viewBoard:"Ver taboleiro",promote:"Coroa a peza",
+ olTit:"Xogar en liña",olNome:"O teu nome",olCrear:"Crear unha sala",olCrearH:"Recibes un código para compartir",olCrearB:"Crear",olUnir:"Unirse cun código",olUnirB:"Entrar",olNota:"Sen contas nin contrasinais. As salas péchanse aos 30 minutos sen actividade. Máximo 20 salas activas á vez.",salaTit:"Sala",salaInstr:"Cada quen escolle a súa cor. Os postos libres sortéanse ao comezar.",salaSortear:"Sortear libres",salaComezar:"Comezar",salaSair:"Saír da sala",chatPh:"Escribe algo…",libre:"Libre",ti:"ti",bot:"Máquina",porBot:"Poñer a máquina neste posto",botsTit:"Postos xogados pola máquina",botsH:"Só para a partida neste dispositivo",botSi:"máquina",botNon:"humano",soltar:"Soltar o teu posto",liberarP:"Baleirar este posto",errNome:"Pon un nome.",errCod:"Esa sala non existe.",errChea:"Non hai sitio: hai 20 salas activas. Proba máis tarde.",errRede:"Non se puido conectar.",errCfg:"O modo en liña non está configurado neste sitio.",salaSo:"Só quen creou a sala pode comezar",agarda:"Agardando a que se enchan os postos…",tuaQuenda:"É a túa quenda",quendaDe:"Quenda de {p}",espectador:"Estás mirando",desc:"Desconectado",mNova:"Xogar",mLina:"En liña",mRegras:"Regras",mAxustes:"Axustes",dNova:"Partida para catro no mesmo dispositivo",dLina:"Crear ou unirse a unha sala con outras persoas",dRegras:"As regras completas, coas pezas e os seus movementos",dAxustes:"Idioma, estilo das pezas, taboleiro e son",inicio:"Volver ao inicio",sairConf:"Saír da partida e volver ao inicio?",proximo:"O modo en liña aínda está por chegar",newGame:"Nova partida",viewBoard:"Ver taboleiro",promote:"Coroa a peza",
  turn:"Quenda",round:"Rolda",setup:"Colocación de Amarelo",start:"Comezar partida",
  pass:"Pasar",rearr:"Reorganizar",confirm:"Confirmar",cancel:"Cancelar",undo:"Desfacer",
  allyWith:"Aliarme con",coalPhase:"Fase de coalicións (roldas 1–3)",noCoal:"Sen coalicións aínda",
- vs:"contra",pending:"por decidir",neutralYet:"neutral",
+ vs:"contra",pending:"por decidir",neutralYet:"neutral",avisoNeutral:"Última oportunidade para aliarte: se non declaras coalición, a partida detense e non gañas.",coalUltima:"Alíate xa ou detense a partida",
  msgSetup:"Amarelo: toca unha peza da túa zona e despois a casa onde a queres pór. Cando remates, comeza a partida.",
  msgRearr:"Move as pezas dentro da túa zona (toca peza, toca casa). Confirma para rematar a quenda.",
  msgMove:"Toca unha peza para ver os seus movementos.",
@@ -557,11 +582,11 @@ es:{name:{Y:"Amarillo",B:"Negro",G:"Verde",R:"Rojo"},
  settings:"Ajustes",language:"Idioma",panelSide:"Panel lateral<span class='hint'>Só en pantalla horizontal</span>",right:"Derecha",left:"Izquierda",
  showCoords:"Mostrar coordenadas",skin:"Estilo de las piezas",board:"Tablero",music:"Música",sfx:"Efectos de sonido",orient:"Orientación",orientFixa:"Fija",orient1p:"Primera persona",variant:"Variante: menores (Verde+Rojo) contra mayores",
  variantNote:"En la variante, las alianzas están fijadas desde el inicio. Las menores ganan dando jaque mate a cualquier Rey; las mayores ganan capturando todas las piezas de las menores.",
- olTit:"Jugar en línea",olNome:"Tu nombre",olCrear:"Crear una sala",olCrearH:"Recibes un código para compartir",olCrearB:"Crear",olUnir:"Unirse con un código",olUnirB:"Entrar",olNota:"Sin cuentas ni contraseñas. Las salas se cierran a los 30 minutos sin actividad. Máximo 20 salas activas a la vez.",salaTit:"Sala",salaInstr:"Cada uno elige su color. Los puestos libres se sortean al empezar.",salaSortear:"Sortear libres",salaComezar:"Empezar",salaSair:"Salir de la sala",chatPh:"Escribe algo…",libre:"Libre",ti:"tú",errNome:"Pon un nombre.",errCod:"Esa sala no existe.",errChea:"No hay sitio: hay 20 salas activas. Prueba más tarde.",errRede:"No se pudo conectar.",errCfg:"El modo en línea no está configurado en este sitio.",salaSo:"Solo quien creó la sala puede empezar",agarda:"Esperando a que se llenen los puestos…",tuaQuenda:"Es tu turno",quendaDe:"Turno de {p}",espectador:"Estás mirando",desc:"Desconectado",mNova:"Jugar",mLina:"En línea",mRegras:"Reglas",mAxustes:"Ajustes",dNova:"Partida para cuatro en el mismo dispositivo",dLina:"Crear o unirse a una sala con otras personas",dRegras:"Las reglas completas, con las piezas y sus movimientos",dAxustes:"Idioma, estilo de las piezas, tablero y sonido",inicio:"Volver al inicio",sairConf:"¿Salir de la partida y volver al inicio?",proximo:"El modo en línea todavía está por llegar",newGame:"Nueva partida",viewBoard:"Ver tablero",promote:"Corona la pieza",
+ olTit:"Jugar en línea",olNome:"Tu nombre",olCrear:"Crear una sala",olCrearH:"Recibes un código para compartir",olCrearB:"Crear",olUnir:"Unirse con un código",olUnirB:"Entrar",olNota:"Sin cuentas ni contraseñas. Las salas se cierran a los 30 minutos sin actividad. Máximo 20 salas activas a la vez.",salaTit:"Sala",salaInstr:"Cada uno elige su color. Los puestos libres se sortean al empezar.",salaSortear:"Sortear libres",salaComezar:"Empezar",salaSair:"Salir de la sala",chatPh:"Escribe algo…",libre:"Libre",ti:"tú",bot:"Máquina",porBot:"Poner la máquina en este puesto",botsTit:"Puestos jugados por la máquina",botsH:"Solo para la partida en este dispositivo",botSi:"máquina",botNon:"humano",soltar:"Soltar tu puesto",liberarP:"Vaciar este puesto",errNome:"Pon un nombre.",errCod:"Esa sala no existe.",errChea:"No hay sitio: hay 20 salas activas. Prueba más tarde.",errRede:"No se pudo conectar.",errCfg:"El modo en línea no está configurado en este sitio.",salaSo:"Solo quien creó la sala puede empezar",agarda:"Esperando a que se llenen los puestos…",tuaQuenda:"Es tu turno",quendaDe:"Turno de {p}",espectador:"Estás mirando",desc:"Desconectado",mNova:"Jugar",mLina:"En línea",mRegras:"Reglas",mAxustes:"Ajustes",dNova:"Partida para cuatro en el mismo dispositivo",dLina:"Crear o unirse a una sala con otras personas",dRegras:"Las reglas completas, con las piezas y sus movimientos",dAxustes:"Idioma, estilo de las piezas, tablero y sonido",inicio:"Volver al inicio",sairConf:"¿Salir de la partida y volver al inicio?",proximo:"El modo en línea todavía está por llegar",newGame:"Nueva partida",viewBoard:"Ver tablero",promote:"Corona la pieza",
  turn:"Turno",round:"Ronda",setup:"Colocación de Amarillo",start:"Empezar partida",
  pass:"Pasar",rearr:"Reorganizar",confirm:"Confirmar",cancel:"Cancelar",undo:"Deshacer",
  allyWith:"Aliarme con",coalPhase:"Fase de coaliciones (rondas 1–3)",noCoal:"Sin coaliciones todavía",
- vs:"contra",pending:"por decidir",neutralYet:"neutral",
+ vs:"contra",pending:"por decidir",neutralYet:"neutral",avisoNeutral:"Última oportunidade para aliarte: se non declaras coalición, a partida detense e non gañas.",coalUltima:"Alíate xa ou detense a partida",
  msgSetup:"Amarillo: toca una pieza de tu zona y luego la casilla donde quieres ponerla. Cuando acabes, empieza la partida.",
  msgRearr:"Mueve las piezas dentro de tu zona (toca pieza, toca casilla). Confirma para terminar el turno.",
  msgMove:"Toca una pieza para ver sus movimientos.",
@@ -599,11 +624,11 @@ en:{name:{Y:"Yellow",B:"Black",G:"Green",R:"Red"},
  settings:"Settings",language:"Language",panelSide:"Side panel<span class='hint'>Landscape only</span>",right:"Right",left:"Left",
  showCoords:"Show coordinates",skin:"Piece style",board:"Board",music:"Music",sfx:"Sound effects",orient:"Orientation",orientFixa:"Fixed",orient1p:"First person",variant:"Variant: lesser powers (Green+Red) vs greater powers",
  variantNote:"In the variant, alliances are fixed from the start. Lesser powers win by checkmating either King; greater powers win by capturing all lesser pieces.",
- olTit:"Play online",olNome:"Your name",olCrear:"Create a room",olCrearH:"You get a code to share",olCrearB:"Create",olUnir:"Join with a code",olUnirB:"Join",olNota:"No accounts or passwords. Rooms close after 30 minutes of inactivity. At most 20 active rooms at a time.",salaTit:"Room",salaInstr:"Everyone picks a colour. Empty seats are drawn at random when the game starts.",salaSortear:"Draw empty seats",salaComezar:"Start",salaSair:"Leave room",chatPh:"Say something…",libre:"Free",ti:"you",errNome:"Enter a name.",errCod:"That room does not exist.",errChea:"No room: 20 rooms are already active. Try later.",errRede:"Could not connect.",errCfg:"Online play is not configured on this site.",salaSo:"Only the room creator can start",agarda:"Waiting for the seats to fill…",tuaQuenda:"Your turn",quendaDe:"{p} to move",espectador:"You are watching",desc:"Disconnected",mNova:"Play",mLina:"Online",mRegras:"Rules",mAxustes:"Settings",dNova:"A four-player game on this device",dLina:"Create or join a room with other people",dRegras:"The full rules, with every piece and how it moves",dAxustes:"Language, piece style, board and sound",inicio:"Back to start",sairConf:"Leave the game and go back to the start?",proximo:"Online play is not ready yet",newGame:"New game",viewBoard:"View board",promote:"Promote the piece",
+ olTit:"Play online",olNome:"Your name",olCrear:"Create a room",olCrearH:"You get a code to share",olCrearB:"Create",olUnir:"Join with a code",olUnirB:"Join",olNota:"No accounts or passwords. Rooms close after 30 minutes of inactivity. At most 20 active rooms at a time.",salaTit:"Room",salaInstr:"Everyone picks a colour. Empty seats are drawn at random when the game starts.",salaSortear:"Draw empty seats",salaComezar:"Start",salaSair:"Leave room",chatPh:"Say something…",libre:"Free",ti:"you",bot:"Computer",porBot:"Put the computer in this seat",botsTit:"Seats played by the computer",botsH:"Only for the game on this device",botSi:"computer",botNon:"human",soltar:"Release your seat",liberarP:"Clear this seat",errNome:"Enter a name.",errCod:"That room does not exist.",errChea:"No room: 20 rooms are already active. Try later.",errRede:"Could not connect.",errCfg:"Online play is not configured on this site.",salaSo:"Only the room creator can start",agarda:"Waiting for the seats to fill…",tuaQuenda:"Your turn",quendaDe:"{p} to move",espectador:"You are watching",desc:"Disconnected",mNova:"Play",mLina:"Online",mRegras:"Rules",mAxustes:"Settings",dNova:"A four-player game on this device",dLina:"Create or join a room with other people",dRegras:"The full rules, with every piece and how it moves",dAxustes:"Language, piece style, board and sound",inicio:"Back to start",sairConf:"Leave the game and go back to the start?",proximo:"Online play is not ready yet",newGame:"New game",viewBoard:"View board",promote:"Promote the piece",
  turn:"Turn",round:"Round",setup:"Yellow's set-up",start:"Start game",
  pass:"Pass",rearr:"Rearrange",confirm:"Confirm",cancel:"Cancel",undo:"Undo",
  allyWith:"Ally with",coalPhase:"Coalition phase (rounds 1–3)",noCoal:"No coalitions yet",
- vs:"vs",pending:"undecided",neutralYet:"neutral",
+ vs:"vs",pending:"undecided",neutralYet:"neutral",avisoNeutral:"Última oportunidade para aliarte: se non declaras coalición, a partida detense e non gañas.",coalUltima:"Alíate xa ou detense a partida",
  msgSetup:"Yellow: tap a piece in your zone, then the square to place it. When done, start the game.",
  msgRearr:"Move pieces within your zone (tap piece, tap square). Confirm to end your turn.",
  msgMove:"Tap a piece to see its moves.",
@@ -648,7 +673,7 @@ I18N.de={name:{Y:"Gelb",B:"Schwarz",G:"Grün",R:"Rot"},
  turn:"Zug",round:"Runde",setup:"Aufstellung von Gelb",start:"Spiel beginnen",
  pass:"Aussetzen",rearr:"Umstellen",confirm:"Bestätigen",cancel:"Abbrechen",undo:"Zurück",
  allyWith:"Verbünden mit",coalPhase:"Bündnisphase (Runden 1–3)",noCoal:"Noch keine Bündnisse",
- vs:"gegen",pending:"offen",neutralYet:"neutral",
+ vs:"gegen",pending:"offen",neutralYet:"neutral",avisoNeutral:"Última oportunidade para aliarte: se non declaras coalición, a partida detense e non gañas.",coalUltima:"Alíate xa ou detense a partida",
  msgSetup:"Gelb: tippe eine Figur in deiner Zone an und dann das Feld, auf das sie soll. Wenn du fertig bist, beginne das Spiel.",
  msgRearr:"Stelle die Figuren innerhalb deiner Zone um (Figur antippen, Feld antippen). Bestätige, um den Zug zu beenden.",
  msgMove:"Tippe eine Figur an, um ihre Züge zu sehen.",
@@ -675,11 +700,12 @@ I18N.de={name:{Y:"Gelb",B:"Schwarz",G:"Grün",R:"Rot"},
  salaSortear:"Freie verlosen",salaComezar:"Beginnen",salaSair:"Raum verlassen",chatPh:"Schreib etwas…",
  libre:"Frei",ti:"du",errNome:"Gib einen Namen ein.",errCod:"Dieser Raum existiert nicht.",
  errChea:"Kein Platz: es sind schon 20 Räume aktiv. Versuch es später.",errRede:"Verbindung fehlgeschlagen.",
- errCfg:"Der Online-Modus ist auf dieser Seite nicht eingerichtet.",salaSo:"Nur wer den Raum eröffnet hat, kann beginnen",
+ errCfg:"Der Online-Modus ist auf dieser Seite nicht eingerichtet.",salaSo:"Nur wer den Raum eröffnet hat, kann beginnen",soltar:"Platz freigeben",liberarP:"Diesen Platz leeren",bot:"Computer",porBot:"Den Computer auf diesen Platz setzen",botsTit:"Vom Computer gespielte Plätze",botsH:"Nur für das Spiel auf diesem Gerät",botSi:"Computer",botNon:"Mensch",
  agarda:"Warte, bis die Plätze besetzt sind…",tuaQuenda:"Du bist am Zug",quendaDe:"{p} ist am Zug",
  espectador:"Du schaust zu",desc:"Getrennt",
  movTit:"Tippe eine Figur an, um zu lesen, wie sie zieht",
  movDesc:I18N.en.movDesc,
+ avisoNeutral:"Letzte Chance für ein Bündnis: ohne erklärte Koalition endet das Spiel und du gewinnst nicht.",coalUltima:"Verbünde dich jetzt, sonst endet das Spiel",
  help:I18N.en.help};
 let L=I18N.gl, lang="gl";
 const t=(k,vars)=>{let s=L[k]??k; if(vars) for(const v in vars) s=s.replaceAll("{"+v+"}",vars[v]); return s;};
@@ -744,6 +770,7 @@ function newGame(){
      retired:{},skipNext:{},usedSkip:{},usedRearr:{Y:true},pending:null,outOfOrder:false,
      yellowAttacked:false,redNoPts:false,variant:settings.variant,log:[],last:null,over:null,pieces:0};
   if(S.variant){S.ally={Y:"B",B:"Y",G:"R",R:"G"};}
+  if(BOTS.Y){ S.phase="play"; }
   history=[];sel=null;legal=[];rearr=null;
   Son.novaSerie();
   render();
@@ -901,10 +928,153 @@ function doMove(fx,fy,tx,ty,promo){
   endTurnAfter("move");
 }
 
+
+/* ================= BOT =================
+   Xoga en calquera posto. Non é un motor forte: é un xogador razoable.
+   - Material e posición: valores por peza, avance, centro, seguridade do Rei.
+   - Busca de 2 medias xogadas (a súa e a mellor resposta do inimigo máis
+     perigoso), con poda simple: dá para non regalar pezas e para ver xaques.
+   - Diplomacia: nas roldas 1-3 escolle aliado mirando cal das dúas potencias
+     maiores está máis forte e menos ameazada, e evita atacar a quen quere
+     como aliado. Vermello respecta a súa regra especial.
+   - Un pouco de azar entre xogadas case iguais, para que non xogue sempre o
+     mesmo e para que a partida non sexa previsible.                        */
+const Bot=(()=>{
+  const VAL={K:1000,T:9,S:10,A:5,E:3,M:3,W:2,G:1,P:6};
+  const CENTRO=(x,y)=>{ const dx=Math.abs(x-4.5), dy=Math.abs(y-4.5); return 4-Math.max(dx,dy)*0.6; };
+
+  function amigos(c){ return [c, S.ally[c]].filter(Boolean); }
+  function ePercebido(c,o){ return c!==o && !amigos(c).includes(o); }
+
+  // avaliación desde o punto de vista de `c` (positivo = bo para c)
+  function evaluar(b,c){
+    let s=0;
+    for(let y=0;y<N;y++)for(let x=0;x<N;x++){
+      const p=b[y][x]; if(!p) continue;
+      let v=VAL[p.t]*10 + CENTRO(x,y);
+      // avance dos peóns e metralladoras
+      if(p.t==="G"||p.t==="W"){ const [fx,fy]=FWD[p.c]; v+=(x*fx+y*fy)*0.4; }
+      if(amigos(c).includes(p.c)) s+=v; else if(ePercebido(c,p.c)) s-=v;
+    }
+    // seguridade: rei propio en xaque, moi malo; rei inimigo en xaque, bo
+    for(const g of ["Y","B"]){
+      const k=findKing(b,g); if(!k) continue;
+      const enX=attackedEnB(b,k[0],k[1],g);
+      if(enX){
+        if(amigos(c).includes(g)) s-=40;
+        else if(ePercebido(c,g)){
+          // cantas escapatorias lle quedan ao rei inimigo? cantas menos, máis preto do mate
+          const bk=S.board; S.board=b;
+          let escapes=0;
+          for(let y=0;y<N&&escapes<4;y++)for(let x=0;x<N&&escapes<4;x++){
+            const p=b[y][x]; if(p&&p.c===g&&legalMoves(x,y).length) escapes++;
+          }
+          S.board=bk;
+          s+= escapes===0 ? 5000 : (escapes===1 ? 120 : 30);
+        }
+      }
+      // rei inimigo con pouco espazo (encerrado) tamén vale
+      if(ePercebido(c,g)){ const [kx,ky]=k; let libres=0;
+        for(const [dx,dy] of ALL8){ const x=kx+dx,y=ky+dy; if(inB(x,y)&&!b[y][x]) libres++; }
+        s+=(8-libres)*1.5; }
+    }
+    return s;
+  }
+  // attacked() usa S.board a través de genMoves(b,...): funciona con calquera b
+  function attackedEnB(b,tx,ty,byEnemiesOf){ return attacked(b,tx,ty,byEnemiesOf); }
+
+  function xogadasDe(b,c){
+    const out=[];
+    for(let y=0;y<N;y++)for(let x=0;x<N;x++){
+      const p=b[y][x]; if(!p||p.c!==c) continue;
+      const bk=S.board; S.board=b;
+      const ms=legalMoves(x,y);
+      S.board=bk;
+      for(const m of ms) out.push({fx:x,fy:y,tx:m.x,ty:m.y,cap:m.cap?b[m.y][m.x]:null,p});
+    }
+    return out;
+  }
+  function inimigoMaisPerigoso(c){
+    // o rival con máis material que non sexa amigo
+    let mellor=null, mx=-1;
+    for(const o of ORDER){ if(!ePercebido(c,o)||S.retired[o]) continue;
+      let m=0; S.board.forEach(r=>r.forEach(p=>{ if(p&&p.c===o) m+=VAL[p.t]; }));
+      if(m>mx){ mx=m; mellor=o; } }
+    return mellor;
+  }
+  function puntuar(c, mv){
+    const b1=applyMove(S.board,mv.fx,mv.fy,mv.tx,mv.ty);
+    // coroamento: sempre a Tanque
+    if((mv.p.t==="G"||mv.p.t==="W")&&promoLine(c,mv.tx,mv.ty)) b1[mv.ty][mv.tx].t="T";
+    let sc=evaluar(b1,c);
+    // resposta do inimigo máis perigoso: a que máis nos doe
+    const en=inimigoMaisPerigoso(c);
+    if(en){
+      const resp=xogadasDe(b1,en); let peor=Infinity;
+      // limitar a 24 respostas máis prometedoras (capturas primeiro) por velocidade
+      resp.sort((a,b)=>(b.cap?VAL[b.cap.t]:0)-(a.cap?VAL[a.cap.t]:0));
+      for(const r of resp.slice(0,24)){
+        const b2=applyMove(b1,r.fx,r.fy,r.tx,r.ty);
+        const e=evaluar(b2,c); if(e<peor) peor=e;
+      }
+      if(peor<Infinity) sc=Math.min(sc, peor*0.9+sc*0.1);
+    }
+    // diplomacia: nas roldas 1-3 unha menor non ataca a quen prefire como aliado
+    if(LESSER[c]&&S.round<=3&&!S.ally[c]&&mv.cap&&GREATER[mv.cap.c]&&mv.cap.c===aliadoPreferido(c)) sc-=60;
+    // non dar voltas: se movemos a mesma peza que a última vez sen capturar, pequena penalización
+    const ult=S.last; if(ult&&!mv.cap&&ult[1][0]===mv.fx&&ult[1][1]===mv.fy&&S.board[mv.fy][mv.fx].c===c) sc-=6;
+    return sc + Math.random()*2.5;
+  }
+  function aliadoPreferido(l){
+    // prefire a potencia maior máis forte que aínda estea libre
+    const libres=["Y","B"].filter(g=>!S.ally[g]&&canDeclare(l,g));
+    if(!libres.length) return null;
+    const forza=g=>{ let m=0; S.board.forEach(r=>r.forEach(p=>{ if(p&&p.c===g) m+=VAL[p.t]; }));
+      const k=findKing(S.board,g); if(k&&attacked(S.board,k[0],k[1],g)) m-=15; return m; };
+    return libres.sort((a,b)=>forza(b)-forza(a))[0];
+  }
+  function decidirAlianza(c){
+    if(!LESSER[c]||S.variant||S.ally[c]||S.round>3) return false;
+    const g=aliadoPreferido(c); if(!g) return false;
+    // declara na rolda 2 ou 3, ou na 1 se o rival xa lle quitou a outra opción
+    const outra=g==="Y"?"B":"Y";
+    if(S.round>=2 || S.ally[outra]){ setAlly(c,g); return true; }
+    return false;
+  }
+  function xogar(){
+    const c=cur(); if(S.phase!=="play"||S.over) return;
+    if(decidirAlianza(c)) render();
+    const xs=xogadasDe(S.board,c);
+    if(!xs.length){ // sen xogadas: pasar se pode, senón nada (o motor xa o trata)
+      if(!S.usedSkip[c]&&S.round<=3){ S.usedSkip[c]=true; note(t("msgPass",{p:nm(c)})); endTurnAfter("pass"); }
+      return;
+    }
+    let mellor=null, mx=-Infinity;
+    for(const mv of xs){ const sc=puntuar(c,mv); if(sc>mx){ mx=sc; mellor=mv; } }
+    const promo=(mellor.p.t==="G"||mellor.p.t==="W")&&promoLine(c,mellor.tx,mellor.ty)?"T":null;
+    doMove(mellor.fx,mellor.fy,mellor.tx,mellor.ty,promo);
+  }
+  return {xogar};
+})();
+
+/* quen controla cada posto: humano ou bot. En local, defínese ao empezar.
+   En liña, o host marca postos como bot e é o seu dispositivo quen os move. */
+let BOTS={Y:false,B:false,G:false,R:false};
+let botTimer=null;
+function eBot(c){ return !!BOTS[c]; }
+function programarBot(){
+  clearTimeout(botTimer);
+  if(S.phase!=="play"||S.over) return;
+  if(!eBot(cur())) return;
+  if(S.online && !Rede.host) return;        // en liña só o host move os bots
+  botTimer=setTimeout(()=>{ if(S.phase==="play"&&!S.over&&eBot(cur())) Bot.xogar(); }, 250+Math.random()*200);
+}
+
 /* ---------------- render ---------------- */
 const $=id=>document.getElementById(id);
+const esc=x=>String(x==null?"":x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function render(){
-  renderBoard(); renderStatus(); renderPanel(); axustarTaboleiro();
+  renderBoard(); renderStatus(); renderPanel(); axustarTaboleiro(); programarBot();
 }
 function boardRot(){           // graos que xira o taboleiro en 1ª persoa
   if(settings.orient!=="1p"||S.phase==="over") return 0;
@@ -930,7 +1100,12 @@ function renderBoard(){
   for(let y=N-1;y>=0;y--) for(let x=0;x<N;x++){
     const d=document.createElement("div");
     d.className="sq "+((x+y)%2?"l":"d"); d.dataset.x=x; d.dataset.y=y;
-    for(const c in ZONE) if(inZone(c,x,y)){const z=document.createElement("div");z.className="zone";z.style.background=COLORS[c];z.style.opacity=tb.zona;d.appendChild(z);}
+    for(const c in ZONE) if(inZone(c,x,y)){
+      const z=document.createElement("div");z.className="zone";z.style.background=COLORS[c];z.style.opacity=tb.zona;d.appendChild(z);
+      // alianza: unha franxa fina da cor do aliado no lado interior da zona
+      const al=S.ally[c];
+      if(al&&!S.variant){ const f=document.createElement("div"); f.className="alia alia-"+c; f.style.background=COLORS[al]; d.appendChild(f); }
+    }
     if(isCorner(x,y)&&!alliancesDone()){const z=document.createElement("div");z.className="corner";d.appendChild(z);}
     const p=S.board[y][x];
     if(p) d.insertAdjacentHTML("beforeend",pieceSVG(p.t,p.c));
@@ -949,8 +1124,13 @@ function renderStatus(){
   let h="";
   if(S.phase==="setup") h=chip("Y",t("setup"));
   else if(S.phase==="over") h=`<span class="chip">${endTitleText()}</span>`;
-  else h=chip(cur(),`${nm(cur())}`,"now")+`<span class="chip rd">${t("round")} ${S.round}</span>`;
-  if(S.phase==="play"&&S.round<=3&&!S.variant) h+=`<span class="chip ph">${t("coalPhase")}</span>`;
+  else { const nome=S.online?Rede.nomePosto(cur()):null;
+    const etq=nome?`${nm(cur())} · ${esc(nome)}`:nm(cur());
+    h=chip(cur(),etq,"now")+`<span class="chip rd">${t("round")} ${S.round}</span>`; }
+  if(S.phase==="play"&&S.round<=3&&!S.variant){
+    const av=avisoNeutral(cur());
+    h+=`<span class="chip ph"${av?' style="background:var(--r);color:#fff"':''}>${av?t("coalUltima"):t("coalPhase")}</span>`;
+  }
   $("status").innerHTML=h;
 }
 function coalText(){
@@ -959,6 +1139,12 @@ function coalText(){
   const side=g=>nm(g)+(a[g]?" + "+nm(a[g]):" + ("+t("pending")+")");
   return side("Y")+" "+t("vs")+" "+side("B");
 }
+function avisoNeutral(me){
+  if(S.variant||S.round!==3||S.phase!=="play"||!LESSER[me]||S.ally[me]) return false;
+  // é a última quenda desta menor na rolda? (Verde móvese antes ca Vermello)
+  // se son Vermello, é sempre a última; se son Verde, aviso igual por precaución
+  return true;
+}
 function renderPanel(){
   const me=cur(), b=[];
   let msg="";
@@ -966,9 +1152,15 @@ function renderPanel(){
   else if(S.phase==="over") msg=endTitleText();
   else if(rearr) msg=t("msgRearr");
   else if(S.pending===me) msg=t("msgCheck",{p:nm(me)});
+  else if(avisoNeutral(me)) msg=t("avisoNeutral");
   else msg=S.online?(Rede.posto?(Rede.podoMover()?t("tuaQuenda")+". "+t("msgMove"):t("quendaDe",{p:nm(cur())})):t("espectador")):t("msgMove");
   $("msg").textContent=msg;
-  $("coal").innerHTML=S.variant?`<span class="chip">${nm("G")} + ${nm("R")} ${t("vs")} ${nm("Y")} + ${nm("B")}</span>`:`<span class="chip">${coalText()}</span>`;
+  const par=(g)=>{ const a=S.ally[g];
+    return `<span class="chip par"><span class="dot" style="background:${COLORS[g]}"></span>${nm(g)}`
+         + (a?` <span class="mais">+</span><span class="dot" style="background:${COLORS[a]}"></span>${nm(a)}`:` <span class="pend">${t("pending")}</span>`)+`</span>`; };
+  $("coal").innerHTML=S.variant
+    ? `<span class="chip par"><span class="dot" style="background:${COLORS.G}"></span>${nm("G")} <span class="mais">+</span><span class="dot" style="background:${COLORS.R}"></span>${nm("R")}</span><span class="vs">${t("vs")}</span><span class="chip par"><span class="dot" style="background:${COLORS.Y}"></span>${nm("Y")} <span class="mais">+</span><span class="dot" style="background:${COLORS.B}"></span>${nm("B")}</span>`
+    : (S.ally.G||S.ally.R) ? par("Y")+`<span class="vs">${t("vs")}</span>`+par("B") : `<span class="chip">${t("noCoal")}</span>`;
   const btn=(label,cls,fn,dis)=>{const x=document.createElement("button");x.textContent=label;if(cls)x.className=cls;x.disabled=!!dis;x.onclick=fn;b.push(x);};
   if(S.phase==="setup"){ if(!S.online||Rede.posto==="Y") btn(t("start"),"p",()=>{S.phase="play";sel=null;legal=[];render();if(S.online)Rede.publicar();}); }
   else if(S.phase==="play"){
@@ -1013,6 +1205,7 @@ function showEnd(){
 /* ---------------- interacción ---------------- */
 function onSquare(x,y){
   if(S.phase==="over") return;
+  if(S.phase==="play"&&eBot(cur())) return;
   if(S.online){ const p=Rede.posto; if(!p) return;
     if(S.phase==="setup"?p!=="Y":p!==cur()) return; }
   const p=S.board[y][x];
@@ -1304,7 +1497,8 @@ function applyLang(){
   if(!sb.options.length) for(const k in TABOLEIROS){const o=document.createElement("option");o.value=k;o.textContent=TABOLEIROS[k].nome;sb.appendChild(o);}
   sb.value=settings.taboleiro; $("selOrient").value=settings.orient;
   document.querySelectorAll(".flag").forEach(b=>b.classList.toggle("on",b.dataset.lang===lang));
-  $("selSide").value=settings.side; $("chkCoords").checked=settings.coords; $("chkMusic").checked=settings.musica; $("chkSfx").checked=settings.sfx; $("chkVariant").checked=settings.variant;
+  $("selSide").value=settings.side;
+  pintarBotrow(); $("chkCoords").checked=settings.coords; $("chkMusic").checked=settings.musica; $("chkSfx").checked=settings.sfx; $("chkVariant").checked=settings.variant;
   $("app").classList.toggle("left",settings.side==="left");
   $("ptitImg").src=`menu/titulo_${lang}.webp`; $("ptitImg").hidden=false; $("ptitTxt").hidden=true;
   const F={Nova:"xogar",Lina:"lina",Regras:"regras",Axustes:"axustes"};
@@ -1323,7 +1517,7 @@ addEventListener("keydown",e=>{ if(e.key!=="Escape") return;
 $("btnSettings").onclick=()=>open("mSettings");
 $("btnHome").onclick=async()=>{
   if(S.phase==="play"&&!confirm(t("sairConf"))) return;
-  if(S.online){ await Rede.sair(); $("chatWrap").hidden=true; }
+  if(S.online){ await Rede.sair(true); $("chatWrap").hidden=true; }
   newGame(); mostrarPortada(true);
 };
 $("btnHelp").onclick=()=>{renderHelp();open("mHelp");};
@@ -1341,7 +1535,7 @@ $("chkSfx").onchange=e=>{settings.sfx=e.target.checked;saveSettings();if(setting
 $("chkVariant").onchange=e=>{settings.variant=e.target.checked;saveSettings();};
 $("btnNew").onclick=()=>{if(!S||S.phase==="over"||S.log.length===0||confirm(t("newConfirm"))){close("mSettings");newGame();}};
 $("btnEndNew").onclick=()=>{close("mEnd");newGame();};
-$("btnEndHome").onclick=async()=>{close("mEnd");if(S.online){await Rede.sair();$("chatWrap").hidden=true;}newGame();mostrarPortada(true);};
+$("btnEndHome").onclick=async()=>{close("mEnd");if(S.online){await Rede.sair(true);$("chatWrap").hidden=true;}newGame();mostrarPortada(true);};
 function axustarTaboleiro(){
   const w=$("boardwrap"); if(!w) return;
   const cs=getComputedStyle(w);
@@ -1376,6 +1570,12 @@ function debuxarChan(){
            + `L${(x0+sB).toFixed(2)},${H}L${(x0-sB).toFixed(2)},${H}Z`;
   $("chan").innerHTML=`<path d="${base}" fill="#F1E4C3"/>`
                      +`<path d="${d}" fill="#14161B" shape-rendering="crispEdges"/>`;
+}
+function pintarBotrow(){
+  const el=$("botrow"); if(!el) return;
+  el.innerHTML=ORDER.map(c=>`<button data-c="${c}" class="${BOTS[c]?"on":""}">
+    <span class="dot" style="background:${COLORS[c]}"></span><b>${nm(c)}</b><small>${BOTS[c]?t("botSi"):t("botNon")}</small></button>`).join("");
+  el.querySelectorAll("button").forEach(b=>b.onclick=()=>{ BOTS[b.dataset.c]=!BOTS[b.dataset.c]; pintarBotrow(); });
 }
 function mostrarPortada(v){
   const p=$("portada"); p.classList.toggle("off",!v);
@@ -1453,7 +1653,7 @@ async function FirebaseDB(){
 }
 
 const Rede=(()=>{
-  let DB=null, sala=null, uid=null, meuPosto=null, host=false, aplicando=false, ultimaQuenda=null;
+  let DB=null, sala=null, uid=null, meuPosto=null, host=false, aplicando=false, ultimaQuenda=null, reconectando=false;
   const L4=["Y","B","G","R"];
   const cod=()=>{const A="ABCDEFGHJKLMNPQRSTUVWXYZ";let c="";for(let i=0;i<5;i++)c+=A[Math.floor(Math.random()*A.length)];return c;};
   const meuUid=()=>{const q=new URLSearchParams(location.search).get("uid"); if(q) return q; /* só para probas */
@@ -1486,21 +1686,35 @@ const Rede=(()=>{
     await conectar(); c=c.toUpperCase().trim();
     const r=await DB.get("rooms/"+c); if(!r) throw new Error("cod");
     sala=c; host=r.host===uid; localStorage.setItem("xc-sala",c);
+    reconectando=true;
     await DB.update("rooms/"+c,{["nomes/"+uid]:nome,updated:Date.now()});
     if(DB.presenza) DB.presenza(`rooms/${c}/online/${uid}`);
     DB.onValue("rooms/"+c, aoCambiar);
     return c;
   }
-  async function sair(){ if(!sala) return; DB.off("rooms/"+sala);
-    if(!S.online){ await DB.update("rooms/"+sala,{["nomes/"+uid]:null}); for(const p of L4) if(meuPosto===p) await DB.set(`rooms/${sala}/seats/${p}`,null); }
-    sala=null; meuPosto=null; localStorage.removeItem("xc-sala"); }
+  async function sair(explicita){ if(!sala) return; DB.off("rooms/"+sala);
+    // só se liberan o nome e o posto se saes a propósito da SALA DE ESPERA;
+    // se hai partida en marcha, o posto consérvase para poder reincorporarte.
+    if(explicita && !S.online){
+      try{ await DB.update("rooms/"+sala,{["nomes/"+uid]:null}); }catch(e){}
+      for(const p of L4) if(meuPosto===p) try{ await DB.set(`rooms/${sala}/seats/${p}`,null); }catch(e){}
+    }
+    sala=null; meuPosto=null; if(explicita) localStorage.removeItem("xc-sala"); }
   async function reclamar(p){ if(!sala) return;
     const seats=(await DB.get(`rooms/${sala}/seats`))||{};
-    if(seats[p]&&seats[p]!==uid) return;
     const upd={updated:Date.now()};
-    for(const q of L4) if(seats[q]===uid) upd["seats/"+q]=null;
-    upd["seats/"+p]=uid;
+    if(seats[p]===uid){ upd["seats/"+p]=null; }         // toco o meu propio posto: solto
+    else {
+      if(seats[p]) return;                               // ocupado por outro: nada (o host usa liberar)
+      for(const q of L4) if(seats[q]===uid) upd["seats/"+q]=null;  // deixo o anterior
+      upd["seats/"+p]=uid;
+    }
     await DB.update("rooms/"+sala,upd);
+  }
+  async function porBot(p){ if(!sala||!host) return;
+    await DB.update("rooms/"+sala,{["seats/"+p]:"bot:"+p,["nomes/bot:"+p]:"🤖 "+t("bot"),updated:Date.now()}); }
+  async function liberar(p){ if(!sala||!host) return;    // o host baleira calquera posto
+    await DB.update("rooms/"+sala,{["seats/"+p]:null,updated:Date.now()});
   }
   async function sortear(){ if(!host) return;
     const r=await DB.get("rooms/"+sala); const seats=r.seats||{}; const nomes=r.nomes||{};
@@ -1511,7 +1725,9 @@ const Rede=(()=>{
     await DB.update("rooms/"+sala,upd);
   }
   async function comezar(){ if(!host) return;
-    newGame(); S.online=true; S.sala=sala;
+    const seats=(await DB.get(`rooms/${sala}/seats`))||{};
+    for(const p of L4) BOTS[p]=String(seats[p]||"").startsWith("bot:");
+    newGame(); S.online=true; S.sala=sala; S.bots={...BOTS};
     await DB.update("rooms/"+sala,{started:true,estado:JSON.stringify(S),updated:Date.now()});
   }
   async function publicar(){ if(!sala||!S.online||aplicando) return;
@@ -1529,7 +1745,8 @@ const Rede=(()=>{
     if(!r.started){ pintarSala(r); return; }
     // partida en marcha
     if(r.estado){ const novo=JSON.parse(r.estado);
-      if(!S.online||JSON.stringify(S)!==r.estado){ aplicando=true; S=novo; S.online=true; S.sala=sala; sel=null;legal=[];rearr=null; render(); aplicando=false; } }
+      if(!S.online||JSON.stringify(S)!==r.estado){ aplicando=true; S=novo; S.online=true; S.sala=sala;
+        if(S.bots) BOTS={...S.bots}; sel=null;legal=[];rearr=null; render(); aplicando=false; } }
     if($("mSala").classList.contains("open")){ close("mSala"); mostrarPortada(false); $("chatWrap").hidden=false; }
     pintarChat($("chatXogo"),r.chat);
     const q=cur(); if(q!==ultimaQuenda){ ultimaQuenda=q; if(q===meuPosto&&S.phase==="play") Son.ef("ally"); }
@@ -1538,10 +1755,20 @@ const Rede=(()=>{
   function pintarSala(r){
     $("salaCod").textContent=sala; const seats=r.seats||{}, nomes=r.nomes||{};
     $("seats").innerHTML=L4.map(p=>{const u=seats[p]; const mine=u===uid;
-      return `<button class="seat ${mine?"mine":""} ${u&&!mine?"taken":""}" data-p="${p}">
-        <span class="dot" style="background:${COLORS[p]}"></span>
-        <span><b>${nm(p)}</b><small>${u?(nomes[u]||"?")+(mine?" ("+t("ti")+")":""):t("libre")}</small></span></button>`;}).join("");
+      const podeLiberar = host && u && !mine;
+      const eBotU = String(u||"").startsWith("bot:");
+      return `<div class="seatwrap">
+        <button class="seat ${mine?"mine":""} ${u&&!mine?"taken":""}" data-p="${p}">
+          <span class="dot" style="background:${COLORS[p]}"></span>
+          <span><b>${nm(p)}</b><small>${u?(eBotU?"🤖 "+t("bot"):(nomes[u]||"?")+(mine?" ("+t("ti")+")":"")):t("libre")}</small></span>
+          ${mine?`<span class="seatx" title="${t("soltar")}">✕</span>`:""}
+        </button>
+        ${podeLiberar?`<button class="seatlib" data-lib="${p}" title="${t("liberarP")}">✕</button>`:""}
+        ${(host&&!u)?`<button class="seatbot" data-bot="${p}" title="${t("porBot")}">🤖</button>`:""}
+      </div>`;}).join("");
+    $("seats").querySelectorAll(".seatbot").forEach(b=>b.onclick=e=>{e.stopPropagation();porBot(b.dataset.bot);});
     $("seats").querySelectorAll(".seat").forEach(b=>b.onclick=()=>reclamar(b.dataset.p));
+    $("seats").querySelectorAll(".seatlib").forEach(b=>b.onclick=e=>{e.stopPropagation();liberar(b.dataset.lib);});
     const cheos=L4.every(p=>seats[p]);
     $("salaComezar").disabled=!(host&&cheos); $("salaSortear").disabled=!host;
     $("salaComezar").title=host?"":t("salaSo");
@@ -1552,14 +1779,20 @@ const Rede=(()=>{
     const msgs=Object.values(chat||{}).sort((a,b)=>a.ts-b.ts).slice(-40);
     el.innerHTML=msgs.map(m=>`<div><b>${esc(m.nome)}</b> ${esc(m.txt)}</div>`).join("");
     el.scrollTop=1e6; }
-  const esc=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const podoMover=()=>!S.online||(meuPosto&&meuPosto===cur());
-  return {conectar,crear,entrar,sair,reclamar,sortear,comezar,publicar,chat,podoMover,
+  function nomePosto(p){ if(!r_) return null; const u=(r_.seats||{})[p]; if(String(u||"").startsWith("bot:")) return "🤖 "+t("bot"); return u?(r_.nomes||{})[u]||null : null; }
+  return {conectar,crear,entrar,sair,reclamar,liberar,sortear,comezar,publicar,chat,podoMover,nomePosto,
           get posto(){return meuPosto;},get sala(){return sala;},get host(){return host;}};
 })();
 
 /* ---- UI en liña ---- */
 $("bLina").onclick=()=>{ Son.activar(); $("olNome").value=localStorage.getItem("xc-nome")||""; $("olErr").textContent=""; open("mLina"); };
+// reincorporación automática: se pechaches con partida en marcha, ao volver reconéctate
+(async()=>{
+  const c=localStorage.getItem("xc-sala"), nome=localStorage.getItem("xc-nome");
+  if(!c||!nome||!FIREBASE_CONFIG) return;
+  try{ await Rede.entrar(c,nome); }catch(e){ localStorage.removeItem("xc-sala"); }
+})();
 async function olAccion(fn){
   const nome=$("olNome").value.trim(); if(!nome){ $("olErr").textContent=t("errNome"); return; }
   localStorage.setItem("xc-nome",nome); $("olErr").textContent="";
@@ -1573,7 +1806,7 @@ $("olBtnUnir").onclick=()=>olAccion(n=>{ const c=$("olCod").value; if(c.length<5
 $("olCod").addEventListener("keydown",e=>{ if(e.key==="Enter") $("olBtnUnir").click(); });
 $("salaSortear").onclick=()=>Rede.sortear();
 $("salaComezar").onclick=()=>Rede.comezar();
-$("salaSair").onclick=async()=>{ await Rede.sair(); close("mSala"); };
+$("salaSair").onclick=async()=>{ await Rede.sair(true); close("mSala"); };
 for(const [inp,btn] of [["chatInSala","chatBtnSala"],["chatInXogo","chatBtnXogo"]]){
   const envia=()=>{ Rede.chat($(inp).value); $(inp).value=""; };
   $(btn).onclick=envia; $(inp).addEventListener("keydown",e=>{ if(e.key==="Enter") envia(); });
